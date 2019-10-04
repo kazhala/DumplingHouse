@@ -16,10 +16,16 @@ export const Food = styled(Title)`
     padding: 10px;
     font-size: 20px;
     border-radius: 7px;
-    box-shadow: 0px 0px 10px 0px grey;
+    margin-top: 5px;
+    box-shadow: 0px 0px 2px 0px grey;
+    transition-property: box-shadow margin-top filter;
+    transition-duration: 0.1s;
     &:hover {
+        margin-top: 0px;
+        margin-bottom: 5px;
         cursor: pointer;
-        opacity: 0.7;
+        box-shadow: 5px 5px 10px 0px grey;
+        filter: contrast(1);
     }
 `;
 
