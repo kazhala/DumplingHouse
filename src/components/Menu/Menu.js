@@ -11,14 +11,18 @@ const MenuStyled = style.div`
 const Menu = props => {
     return (
         <MenuStyled>
-            <h1>Menu</h1>
-            <FoodGrid>
-                {foods.map(food => (
-                    <Food img={food.img}>
-                        <FoodLabel>{food.name}</FoodLabel>
-                    </Food>
-                ))}
-            </FoodGrid>
+            {Object.keys(foods).map(section => (
+                <div key={section}>
+                    <h1>{section}</h1>
+                    <FoodGrid>
+                        {foods[section].map(food => (
+                            <Food img={food.img} key={food.name}>
+                                <FoodLabel>{food.name}</FoodLabel>
+                            </Food>
+                        ))}
+                    </FoodGrid>
+                </div>
+            ))}
         </MenuStyled>
     );
 };
