@@ -20,7 +20,12 @@ const Logo = styled(Title)`
 const Navbar = props => {
     return (
         <NavbarStyled>
-            <Logo>Sliceline 🍕</Logo>
+            <Logo>
+                Sliceline{' '}
+                <span role="img" aria-label="pizza">
+                    🍕{' '}
+                </span>
+            </Logo>
         </NavbarStyled>
     );
 };
