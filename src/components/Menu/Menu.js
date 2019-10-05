@@ -16,7 +16,11 @@ const Menu = props => {
                     <h1>{section}</h1>
                     <FoodGrid>
                         {foods[section].map(food => (
-                            <Food img={food.img} key={food.name}>
+                            <Food
+                                img={food.img}
+                                key={food.name}
+                                onClick={() => props.setOpenFood(food)}
+                            >
                                 <FoodLabel>{food.name}</FoodLabel>
                             </Food>
                         ))}
