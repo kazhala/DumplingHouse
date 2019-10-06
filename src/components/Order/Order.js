@@ -25,6 +25,17 @@ const OrderContent = styled(DialogContent)`
 const OrderContainer = styled.div`
     padding: 10px 0px;
     border-bottom: 1px solid grey;
+    ${props =>
+        props.editable
+            ? `
+        &:hover {
+            cursor: pointer;
+            background-color: #e7e7e7;
+        }
+    `
+            : `
+        pointer-events: none;
+    `}
 `;
 
 const OrderItem = styled.div`
@@ -40,7 +51,14 @@ const DetailItem = styled.div`
 `;
 
 const Order = props => {
-    const { orders } = props;
+    const { orders, setOrders, setOpenFood } = props;
+
+    const handleDeleteItem = (e, index) => {
+        e.stopPropagation();
+        const newOrders = [...orders];
+        newOrders.splice(index, 1);
+        setOrders(newOrders);
+    };
 
     const subTotal = orders.reduce((total, order) => {
         return total + order.orderPrice;
@@ -55,12 +73,23 @@ const Order = props => {
             ) : (
                 <OrderContent>
                     <OrderContainer>Your Order:</OrderContainer>{' '}
-                    {orders.map(order => (
-                        <OrderContainer key={order.name}>
-                            <OrderItem>
+                    {orders.map((order, index) => (
+                        <OrderContainer key={order.name} editable>
+                            <OrderItem
+                                onClick={() => setOpenFood({ ...order, index })}
+                            >
                                 <div>{order.quantity}</div>
                                 <div>{order.name}</div>
-                                <div></div>
+                                <div
+                                    style={{
+                                        cursor: 'pointer'
+                                    }}
+                                    onClick={e => handleDeleteItem(e, index)}
+                                >
+                                    <span role="img" aria-label="garbage emoji">
+                                        🗑️
+                                    </span>
+                                </div>
                                 <div>{formatString(order.orderPrice)}</div>
                             </OrderItem>
                             <DetailItem>

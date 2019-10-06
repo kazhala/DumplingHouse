@@ -94,6 +94,8 @@ const FoodDialogContainer = props => {
 
     const choiceRadio = useChoiceRadio(openFood.choice);
 
+    const isEditing = openFood.index > -1;
+
     const order = {
         ...openFood,
         quantity: quantity.value,
@@ -104,6 +106,13 @@ const FoodDialogContainer = props => {
 
     const addToOrders = () => {
         setOrders([...orders, newOrder]);
+        setOpenFood(null);
+    };
+
+    const editOrder = () => {
+        const newOrders = [...orders];
+        newOrders[openFood.index] = newOrder;
+        setOrders(newOrders);
         setOpenFood(null);
     };
 
@@ -136,10 +145,11 @@ const FoodDialogContainer = props => {
                 </DialogContent>
                 <DialogFooter>
                     <ConfirmButton
-                        onClick={addToOrders}
+                        onClick={isEditing ? editOrder : addToOrders}
                         disabled={openFood.choices && !choiceRadio.value}
                     >
-                        Add to order: {formatString(newOrder.orderPrice)}
+                        {isEditing ? 'Edit order: ' : 'Add to order: '}
+                        {formatString(newOrder.orderPrice)}
                     </ConfirmButton>
                 </DialogFooter>
             </Dialog>
