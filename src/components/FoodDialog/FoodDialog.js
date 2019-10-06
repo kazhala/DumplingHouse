@@ -6,6 +6,9 @@ import { Title } from '../../Styles/title';
 import { formatString } from '../../Data/FoodData';
 import QuantityInput from './QuantityInput';
 import { useQuantity } from '../../Hooks/useQuantity';
+import Toppings from './Toppings';
+import { useToppings } from '../../Hooks/useToppings';
+import { usePrice } from '../../Hooks/usePrice';
 
 const Dialog = styled.div`
     width: 500px;
@@ -47,6 +50,7 @@ export const DialogContent = styled.div`
     overflow: auto;
     min-height: 100px;
     padding: 0px 40px;
+    padding-bottom: 80px;
 `;
 
 export const DialogFooter = styled.div`
@@ -76,20 +80,23 @@ const FoodDialogContainer = props => {
 
     const quantity = useQuantity(openFood && openFood.quantity);
 
+    const toppings = useToppings(openFood.toppings);
+
     const order = {
         ...openFood,
-        quantity: quantity.value
+        quantity: quantity.value,
+        toppings: toppings.toppings
     };
+    const newOrder = usePrice(order);
 
     const addToOrders = () => {
-        setOrders([...orders, order]);
+        setOrders([...orders, newOrder]);
         setOpenFood(null);
     };
 
-    const getPrice = order => {
-        return order.quantity * order.price;
+    const hasToppings = food => {
+        return food.section === 'Pizza';
     };
-
     return (
         <React.Fragment>
             <DialogShadow onClick={() => setOpenFood(null)} />
@@ -99,10 +106,16 @@ const FoodDialogContainer = props => {
                 </DialogBanner>
                 <DialogContent>
                     <QuantityInput quantity={quantity} />
+                    {hasToppings(openFood) && (
+                        <React.Fragment>
+                            <h3>Would you like toppings?</h3>
+                            <Toppings {...toppings} />
+                        </React.Fragment>
+                    )}
                 </DialogContent>
                 <DialogFooter>
                     <ConfirmButton onClick={addToOrders}>
-                        Add to order: {formatString(getPrice(order))}
+                        Add to order: {formatString(newOrder.orderPrice)}
                     </ConfirmButton>
                 </DialogFooter>
             </Dialog>

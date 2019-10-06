@@ -34,11 +34,16 @@ const OrderItem = styled.div`
     justify-content: space-between;
 `;
 
+const DetailItem = styled.div`
+    color: grey;
+    font-size: 10px;
+`;
+
 const Order = props => {
     const { orders } = props;
 
     const subTotal = orders.reduce((total, order) => {
-        return total + order.quantity * order.price;
+        return total + order.orderPrice;
     }, 0);
 
     return (
@@ -51,15 +56,19 @@ const Order = props => {
                 <OrderContent>
                     <OrderContainer>Your Order:</OrderContainer>{' '}
                     {orders.map(order => (
-                        <OrderContainer>
+                        <OrderContainer key={order.name}>
                             <OrderItem>
                                 <div>{order.quantity}</div>
                                 <div>{order.name}</div>
                                 <div></div>
-                                <div>
-                                    {formatString(order.quantity * order.price)}
-                                </div>
+                                <div>{formatString(order.orderPrice)}</div>
                             </OrderItem>
+                            <DetailItem>
+                                {order.toppings
+                                    .filter(topping => topping.checked)
+                                    .map(checkedTopping => checkedTopping.name)
+                                    .join(', ')}
+                            </DetailItem>
                         </OrderContainer>
                     ))}
                     <OrderContainer>
