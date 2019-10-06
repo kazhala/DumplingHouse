@@ -5,6 +5,7 @@ export const FoodGrid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
+    padding-bottom: 40px;
 `;
 
 export const Food = styled.div`

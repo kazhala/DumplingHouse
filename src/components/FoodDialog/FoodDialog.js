@@ -9,6 +9,8 @@ import { useQuantity } from '../../Hooks/useQuantity';
 import Toppings from './Toppings';
 import { useToppings } from '../../Hooks/useToppings';
 import { usePrice } from '../../Hooks/usePrice';
+import { useChoiceRadio } from '../../Hooks/useChoiceRadio';
+import Choices from './Choices';
 
 const Dialog = styled.div`
     width: 500px;
@@ -35,15 +37,16 @@ const DialogShadow = styled.div`
 const DialogBanner = styled.div`
     min-height: 200px;
     margin-bottom: 20px;
-    ${props => `background-Image: url(${props.img});`}
+    ${props =>
+        props.img ? `background-Image: url(${props.img});` : `min-height: 75px`}
     background-position: center;
     background-size: cover;
 `;
 
 const DialogBannerName = styled(FoodLabel)`
-    top: 100px;
     font-size: 30px;
     padding: 5px 40px;
+    top: ${props => (props.img ? '100px' : '20px')};
 `;
 
 export const DialogContent = styled.div`
@@ -73,6 +76,13 @@ export const ConfirmButton = styled(Title)`
         cursor: pointer;
         opacity: 0.7;
     }
+    ${props =>
+        props.disabled &&
+        `
+        pointer-events: none;
+        opacity: 0.5;
+        background-color: none;
+    `}
 `;
 
 const FoodDialogContainer = props => {
@@ -82,10 +92,13 @@ const FoodDialogContainer = props => {
 
     const toppings = useToppings(openFood.toppings);
 
+    const choiceRadio = useChoiceRadio(openFood.choice);
+
     const order = {
         ...openFood,
         quantity: quantity.value,
-        toppings: toppings.toppings
+        toppings: toppings.toppings,
+        choice: choiceRadio.value
     };
     const newOrder = usePrice(order);
 
@@ -102,7 +115,9 @@ const FoodDialogContainer = props => {
             <DialogShadow onClick={() => setOpenFood(null)} />
             <Dialog>
                 <DialogBanner img={openFood.img}>
-                    <DialogBannerName>{openFood.name}</DialogBannerName>
+                    <DialogBannerName img={openFood.img}>
+                        {openFood.name}
+                    </DialogBannerName>
                 </DialogBanner>
                 <DialogContent>
                     <QuantityInput quantity={quantity} />
@@ -112,9 +127,18 @@ const FoodDialogContainer = props => {
                             <Toppings {...toppings} />
                         </React.Fragment>
                     )}
+                    {openFood.choices && (
+                        <Choices
+                            openFood={openFood}
+                            choiceRadio={choiceRadio}
+                        />
+                    )}
                 </DialogContent>
                 <DialogFooter>
-                    <ConfirmButton onClick={addToOrders}>
+                    <ConfirmButton
+                        onClick={addToOrders}
+                        disabled={openFood.choices && !choiceRadio.value}
+                    >
                         Add to order: {formatString(newOrder.orderPrice)}
                     </ConfirmButton>
                 </DialogFooter>

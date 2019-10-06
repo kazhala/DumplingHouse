@@ -69,6 +69,9 @@ const Order = props => {
                                     .map(checkedTopping => checkedTopping.name)
                                     .join(', ')}
                             </DetailItem>
+                            {order.choice && (
+                                <DetailItem>{order.choice}</DetailItem>
+                            )}
                         </OrderContainer>
                     ))}
                     <OrderContainer>
