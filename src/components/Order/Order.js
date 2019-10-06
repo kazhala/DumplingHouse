@@ -37,6 +37,10 @@ const OrderItem = styled.div`
 const Order = props => {
     const { orders } = props;
 
+    const subTotal = orders.reduce((total, order) => {
+        return total + order.quantity * order.price;
+    }, 0);
+
     return (
         <OrderStyled>
             {orders.length === 0 ? (
@@ -58,6 +62,23 @@ const Order = props => {
                             </OrderItem>
                         </OrderContainer>
                     ))}
+                    <OrderContainer>
+                        <OrderItem>
+                            <div></div>
+                            <div>Sub-Total</div>
+                            <div>{formatString(subTotal)}</div>
+                        </OrderItem>
+                        <OrderItem>
+                            <div></div>
+                            <div>Tax</div>
+                            <div>{formatString(subTotal * 0.07)}</div>
+                        </OrderItem>
+                        <OrderItem>
+                            <div></div>
+                            <div>Total</div>
+                            <div>{formatString(subTotal * 1.07)}</div>
+                        </OrderItem>
+                    </OrderContainer>
                 </OrderContent>
             )}
             <OrderFooter>
