@@ -22,9 +22,17 @@ const OrderContent = styled(DialogContent)`
 `;
 
 const Order = props => {
+    const { orders } = props;
+
     return (
         <OrderStyled>
-            <OrderContent>Your order is looking pretty empty...</OrderContent>
+            {orders.length === 0 ? (
+                <OrderContent>
+                    Your order is looking pretty empty...
+                </OrderContent>
+            ) : (
+                <OrderContent>{orders.length}</OrderContent>
+            )}
             <OrderFooter>
                 <ConfirmButton>Checkout</ConfirmButton>
             </OrderFooter>

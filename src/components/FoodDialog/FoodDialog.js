@@ -68,16 +68,29 @@ export const ConfirmButton = styled(Title)`
 `;
 
 const FoodDialog = props => {
-    return props.food ? (
+    const { openFood, setOpenFood, orders, setOrders } = props;
+
+    const order = {
+        name: openFood && openFood.name
+    };
+
+    const addToOrders = () => {
+        setOrders([...orders, order]);
+        setOpenFood(null);
+    };
+
+    return openFood ? (
         <React.Fragment>
-            <DialogShadow onClick={() => props.setOpenFood(null)} />
+            <DialogShadow onClick={() => setOpenFood(null)} />
             <Dialog>
-                <DialogBanner img={props.food.img}>
-                    <DialogBannerName>{props.food.name}</DialogBannerName>
+                <DialogBanner img={openFood.img}>
+                    <DialogBannerName>{openFood.name}</DialogBannerName>
                 </DialogBanner>
                 <DialogContent></DialogContent>
                 <DialogFooter>
-                    <ConfirmButton>Add to order</ConfirmButton>
+                    <ConfirmButton onClick={addToOrders}>
+                        Add to order
+                    </ConfirmButton>
                 </DialogFooter>
             </Dialog>
         </React.Fragment>

@@ -1,22 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Navbar from './components/Navbar/Navbar';
 import { Banner } from './components/Banner/Banner';
 import Menu from './components/Menu/Menu';
 import { GlobalStyle } from './Styles/GlobalStyle';
 import FoodDialog from './components/FoodDialog/FoodDialog';
 import Order from './components/Order/Order';
+import { useOpenFood } from './Hooks/useOpenFood';
+import { useOrders } from './Hooks/useOrders';
 
 function App() {
-    const [openFood, setOpenFood] = useState(null);
+    const openFood = useOpenFood();
+    const orders = useOrders();
 
     return (
         <React.Fragment>
             <GlobalStyle />
-            <FoodDialog food={openFood} setOpenFood={setOpenFood} />
+            <FoodDialog {...openFood} {...orders} />
             <Navbar />
-            <Order />
+            <Order {...orders} />
             <Banner />
-            <Menu setOpenFood={setOpenFood} />
+            <Menu {...openFood} />
         </React.Fragment>
     );
 }
