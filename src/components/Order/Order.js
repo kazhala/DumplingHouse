@@ -49,10 +49,12 @@ const Order = props => {
                     {orders.map(order => (
                         <OrderContainer>
                             <OrderItem>
-                                <div>1</div>
+                                <div>{order.quantity}</div>
                                 <div>{order.name}</div>
                                 <div></div>
-                                <div>{formatString(order.price)}</div>
+                                <div>
+                                    {formatString(order.quantity * order.price)}
+                                </div>
                             </OrderItem>
                         </OrderContainer>
                     ))}
