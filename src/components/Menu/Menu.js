@@ -1,6 +1,6 @@
 import React from 'react';
 import style from 'styled-components';
-import { foods } from '../../Data/FoodData';
+import { foods, formatString } from '../../Data/FoodData';
 import { FoodGrid, Food, FoodLabel } from './FoodGrid';
 
 const MenuStyled = style.div`
@@ -21,7 +21,10 @@ const Menu = props => {
                                 key={food.name}
                                 onClick={() => props.setOpenFood(food)}
                             >
-                                <FoodLabel>{food.name}</FoodLabel>
+                                <FoodLabel>
+                                    <div>{food.name}</div>
+                                    <div>{formatString(food.price)}</div>
+                                </FoodLabel>
                             </Food>
                         ))}
                     </FoodGrid>

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { FoodLabel } from '../Menu/FoodGrid';
 import { pizzaRed } from '../../Styles/colors';
 import { Title } from '../../Styles/title';
+import { formatString } from '../../Data/FoodData';
 
 const Dialog = styled.div`
     width: 500px;
@@ -71,7 +72,7 @@ const FoodDialog = props => {
     const { openFood, setOpenFood, orders, setOrders } = props;
 
     const order = {
-        name: openFood && openFood.name
+        ...openFood
     };
 
     const addToOrders = () => {
@@ -89,7 +90,7 @@ const FoodDialog = props => {
                 <DialogContent></DialogContent>
                 <DialogFooter>
                     <ConfirmButton onClick={addToOrders}>
-                        Add to order
+                        Add to order: {formatString(openFood.price)}
                     </ConfirmButton>
                 </DialogFooter>
             </Dialog>

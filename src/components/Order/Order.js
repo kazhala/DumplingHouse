@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { ConfirmButton, DialogContent } from '../FoodDialog/FoodDialog';
 import { DialogFooter as OrderFooter } from '../FoodDialog/FoodDialog';
+import { formatString } from '../../Data/FoodData';
 
 const OrderStyled = styled.div`
     position: fixed;
@@ -28,6 +29,9 @@ const OrderContainer = styled.div`
 
 const OrderItem = styled.div`
     padding: 10px 0px;
+    display: grid;
+    grid-template-columns: 20px 150px 20px 60px;
+    justify-content: space-between;
 `;
 
 const Order = props => {
@@ -44,7 +48,12 @@ const Order = props => {
                     <OrderContainer>Your Order:</OrderContainer>{' '}
                     {orders.map(order => (
                         <OrderContainer>
-                            <OrderItem>{order.name}</OrderItem>
+                            <OrderItem>
+                                <div>1</div>
+                                <div>{order.name}</div>
+                                <div></div>
+                                <div>{formatString(order.price)}</div>
+                            </OrderItem>
                         </OrderContainer>
                     ))}
                 </OrderContent>
