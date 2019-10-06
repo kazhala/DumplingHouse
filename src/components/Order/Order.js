@@ -21,6 +21,15 @@ const OrderContent = styled(DialogContent)`
     height: 100%;
 `;
 
+const OrderContainer = styled.div`
+    padding: 10px 0px;
+    border-bottom: 1px solid grey;
+`;
+
+const OrderItem = styled.div`
+    padding: 10px 0px;
+`;
+
 const Order = props => {
     const { orders } = props;
 
@@ -31,7 +40,14 @@ const Order = props => {
                     Your order is looking pretty empty...
                 </OrderContent>
             ) : (
-                <OrderContent>{orders.length}</OrderContent>
+                <OrderContent>
+                    <OrderContainer>Your Order:</OrderContainer>{' '}
+                    {orders.map(order => (
+                        <OrderContainer>
+                            <OrderItem>{order.name}</OrderItem>
+                        </OrderContainer>
+                    ))}
+                </OrderContent>
             )}
             <OrderFooter>
                 <ConfirmButton>Checkout</ConfirmButton>
