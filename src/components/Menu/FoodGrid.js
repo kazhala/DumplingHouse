@@ -12,20 +12,21 @@ export const Food = styled.div`
     height: 100px;
     background-image: ${props => `url(${props.img})`};
     background-position: center;
-    background-size: cover;
+    background-size: 100%;
     filter: contrast(0.75);
     padding: 10px;
     font-size: 20px;
     border-radius: 7px;
-    margin-top: 5px;
+    /* margin-top: 3px; */
     box-shadow: 0px 0px 2px 0px grey;
-    transition-property: box-shadow margin-top filter;
-    transition-duration: 0.1s;
+    transition-property: box-shadow margin-top filter background-size;
+    transition-duration: 0.5s;
     &:hover {
-        margin-top: 0px;
-        margin-bottom: 5px;
+        /* margin-top: 0px;
+        margin-bottom: 3px; */
         cursor: pointer;
         box-shadow: 5px 5px 10px 0px grey;
+        background-size: 115%;
         filter: contrast(1);
     }
 `;

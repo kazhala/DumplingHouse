@@ -24,6 +24,14 @@ export const foodItems = [
         description: 'Each serve comes with 12 dumplings'
     },
     {
+        name: 'Wonton',
+        section: 'Dumpling',
+        price: 9.9,
+        img: '/img/wontonDump.jpg',
+        choices: ['chicken', 'beef', 'vegan', 'egg'],
+        description: 'Each serve comes with 12 wonton'
+    },
+    {
         name: 'Steamed BaoZi',
         section: 'BaoZi/Bun',
         price: 11.9,
@@ -45,6 +53,19 @@ export const foodItems = [
         img: '/img/friedBun.jpg',
         description:
             'Each serve comes with 10 shengjian (They are relative smaller)'
+    },
+    {
+        name: 'Sichuan Noodle',
+        section: 'Noodle',
+        price: 9,
+        img: '/img/spicyNoodle.jpeg',
+        description: 'Spicy Sichuan noodle, warning (hot)'
+    },
+    {
+        name: 'Beef Noodle',
+        section: 'Noodle',
+        price: 10,
+        img: '/img/beefNoodle.jpg'
     },
     {
         name: 'Cheese Pizza',
@@ -72,6 +93,12 @@ export const foodItems = [
         choices: ['chicken', 'beef', 'vegan']
     },
     {
+        name: 'Spaghetti',
+        img: '/img/spaghetti.jpg',
+        section: 'Others',
+        price: 13
+    },
+    {
         name: 'Super Sandwich',
         img: '/img/sandwich.jpeg',
         section: 'Others',
@@ -90,6 +117,13 @@ export const foodItems = [
         price: 2.5,
         section: 'Drinks',
         choices: ['Coke', 'Sprite', 'Root Bear']
+    },
+    {
+        img: '/img/drinks.jpeg',
+        name: 'HomeMade Drinks',
+        price: 6,
+        section: 'Drinks',
+        choices: ['Lemonade', 'PassionFruit', 'Secret Blend']
     }
 ];
 

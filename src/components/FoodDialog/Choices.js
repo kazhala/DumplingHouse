@@ -11,7 +11,7 @@ const Label = styled.label`
 
 const RadioContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
 `;
 
 const Choices = props => {

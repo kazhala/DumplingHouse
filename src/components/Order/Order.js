@@ -118,7 +118,13 @@ const Order = props => {
                     <div ref={bottomEl} />
                 </OrderContent>
             )}
-            <OrderContainer style={{ borderTop: '1px solid grey' }}>
+            <OrderContainer
+                style={{
+                    borderTop: '1px solid grey',
+                    borderBottom: 'none',
+                    marginBottom: '5px'
+                }}
+            >
                 <OrderItem>
                     <div></div>
                     <div>Sub-Total</div>
