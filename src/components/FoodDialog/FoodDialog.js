@@ -85,6 +85,11 @@ export const ConfirmButton = styled(Title)`
     `}
 `;
 
+const Disclaimer = styled.div`
+    font-size: 8px;
+    opacity: 0.5;
+`;
+
 const FoodDialogContainer = props => {
     const { openFood, setOpenFood, orders, setOrders } = props;
 
@@ -117,7 +122,7 @@ const FoodDialogContainer = props => {
     };
 
     const hasToppings = food => {
-        return food.section === 'Pizza';
+        return food.name.includes('Pizza');
     };
     return (
         <React.Fragment>
@@ -130,6 +135,9 @@ const FoodDialogContainer = props => {
                 </DialogBanner>
                 <DialogContent>
                     <QuantityInput quantity={quantity} />
+                    {openFood.description && (
+                        <Disclaimer>{openFood.description}</Disclaimer>
+                    )}
                     {hasToppings(openFood) && (
                         <React.Fragment>
                             <h3>Would you like toppings?</h3>

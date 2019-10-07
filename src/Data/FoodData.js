@@ -4,71 +4,88 @@ export const foodItems = [
         section: 'Dumpling',
         price: 12.8,
         img: '/img/tradDump.jpg',
-        choices: ['chicken', 'beef', 'vegan', 'egg']
+        choices: ['chicken', 'beef', 'vegan', 'egg'],
+        description: 'Each serve comes with 12 dumplings'
     },
     {
         name: 'Fried Dumpling',
         section: 'Dumpling',
         price: 13.8,
         img: '/img/friedDump.jpg',
-        choices: ['chicken', 'beef', 'vegan', 'egg']
+        choices: ['chicken', 'beef', 'vegan', 'egg'],
+        description: 'Each serve comes with 12 dumplings'
     },
     {
         name: 'Steamed Dumpling',
         section: 'Dumpling',
         price: 12.8,
         img: '/img/steamDump.jpg',
-        choices: ['chicken', 'beef', 'vegan', 'egg']
+        choices: ['chicken', 'beef', 'vegan', 'egg'],
+        description: 'Each serve comes with 12 dumplings'
+    },
+    {
+        name: 'Steamed BaoZi',
+        section: 'BaoZi/Bun',
+        price: 11.9,
+        img: '/img/traditionalBun.jpeg',
+        choices: ['chicken', 'beef', 'vegan', 'egg'],
+        description: 'Each serve comes with 6 baozi'
+    },
+    {
+        name: 'XiaoLongBao',
+        section: 'BaoZi/Bun',
+        price: 11.9,
+        img: '/img/xiaolongBun.jpg',
+        description: 'Each serve comes with 10 xiaolongbao'
+    },
+    {
+        name: 'Shengjian(Fried Bun)',
+        section: 'BaoZi/Bun',
+        price: 12.9,
+        img: '/img/friedBun.jpg',
+        description:
+            'Each serve comes with 10 shengjian (They are relative smaller)'
     },
     {
         name: 'Cheese Pizza',
         img: '/img/pizza2.jpg',
-        section: 'Pizza',
+        section: 'Others',
         price: 5.5
     },
     {
         name: 'Peperoni Pizza',
         img: '/img/pizza.jpeg',
-        section: 'Pizza',
+        section: 'Others',
         price: 7
     },
     {
         name: 'Chicken Pizza',
         img: '/img/chickenpizza.jpeg',
-        section: 'Pizza',
+        section: 'Others',
         price: 8
     },
     {
-        name: 'Healthy Pizza',
-        img: '/img/healthypizza.jpeg',
-        section: 'Pizza',
-        price: 7
-    },
-    {
-        name: 'Burger',
-        img: '/img/burger.jpeg',
-        section: 'Sandwich',
-        price: 6
-    },
-    {
-        name: 'Gyro',
+        name: 'Wrap',
         img: '/img/gyro.jpeg',
-        section: 'Sandwich',
-        price: 5
+        section: 'Others',
+        price: 5,
+        choices: ['chicken', 'beef', 'vegan']
     },
     {
         name: 'Super Sandwich',
         img: '/img/sandwich.jpeg',
-        section: 'Sandwich',
-        price: 7
+        section: 'Others',
+        price: 7,
+        choices: ['chicken', 'beef', 'vegan']
     },
     {
         name: 'Fires',
         img: '/img/fries.jpeg',
-        section: 'Sides',
+        section: 'Others',
         price: 3
     },
     {
+        img: '/img/soda.jpg',
         name: 'Soda',
         price: 2.5,
         section: 'Drinks',

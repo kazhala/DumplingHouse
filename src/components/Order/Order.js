@@ -9,7 +9,7 @@ const OrderStyled = styled.div`
     right: 0px;
     top: 48px;
     width: 340px;
-    background-color: white;
+    background-color: #eee;
     height: calc(100% - 48px);
     box-shadow: 4px 0px 5px 4px grey;
     z-index: 10;
@@ -48,6 +48,7 @@ const OrderItem = styled.div`
 const DetailItem = styled.div`
     color: grey;
     font-size: 10px;
+    padding-left: 37px;
 `;
 
 const Order = props => {

@@ -15,14 +15,20 @@ function App() {
     useTitle({ ...openFood, ...orders });
 
     return (
-        <React.Fragment>
+        <div
+            style={{
+                backgroundColor: '#eee',
+                overflowY: 'hidden'
+            }}
+        >
             <GlobalStyle />
             <FoodDialog {...openFood} {...orders} />
             <Navbar />
             <Order {...orders} {...openFood} />
             <Banner />
             <Menu {...openFood} />
-        </React.Fragment>
+            <div style={{ height: '20px' }} />
+        </div>
     );
 }
 
