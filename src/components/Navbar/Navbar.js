@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { pizzaRed } from '../../Styles/colors';
+import { chineseYellow } from '../../Styles/colors';
 import { Title } from '../../Styles/title';
 
 const NavbarStyled = styled.div`
-    background-color: ${pizzaRed};
+    background-color: ${chineseYellow};
     padding: 10px;
     position: fixed;
     width: 100%;
@@ -21,9 +21,9 @@ const Navbar = props => {
     return (
         <NavbarStyled>
             <Logo>
-                Sliceline{' '}
-                <span role="img" aria-label="pizza">
-                    🍕{' '}
+                Turramurra DumplingHouse{' '}
+                <span role="img" aria-label="lantern">
+                    🏮{' '}
                 </span>
             </Logo>
         </NavbarStyled>

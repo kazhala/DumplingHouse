@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Title } from '../../Styles/title';
-import { pizzaRed } from '../../Styles/colors';
+import { chineseYellow } from '../../Styles/colors';
 
 const QuantityInputStyled = styled.input`
     font-size: 18px;
@@ -18,12 +18,12 @@ const IncrementContainer = styled(Title)`
 
 const IncrementButton = styled.div`
     width: 23px;
-    color: ${pizzaRed};
+    color: ${chineseYellow};
     font-size: 20px;
     text-align: center;
     line-height: 23px;
     margin: 0px 10px;
-    border: 1px solid ${pizzaRed};
+    border: 1px solid ${chineseYellow};
     ${props =>
         props.disabled &&
         `

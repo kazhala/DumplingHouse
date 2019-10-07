@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FoodLabel } from '../Menu/FoodGrid';
-import { pizzaRed } from '../../Styles/colors';
+import { chineseYellow } from '../../Styles/colors';
 import { Title } from '../../Styles/title';
 import { formatString } from '../../Data/FoodData';
 import QuantityInput from './QuantityInput';
@@ -71,7 +71,7 @@ export const ConfirmButton = styled(Title)`
     padding: 10px;
     text-align: center;
     width: 200px;
-    background-color: ${pizzaRed};
+    background-color: ${chineseYellow};
     &:hover {
         cursor: pointer;
         opacity: 0.7;

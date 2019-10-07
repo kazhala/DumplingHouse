@@ -7,7 +7,7 @@ export const useTitle = ({ openFood, orders }) => {
         } else {
             document.title =
                 orders.length === 0
-                    ? `What's for dinner?`
+                    ? `Turramurra DumplingHouse`
                     : `[${orders.length}] items in your order!`;
         }
     });

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { ConfirmButton, DialogContent } from '../FoodDialog/FoodDialog';
 import { DialogFooter as OrderFooter } from '../FoodDialog/FoodDialog';
@@ -53,6 +53,17 @@ const DetailItem = styled.div`
 const Order = props => {
     const { orders, setOrders, setOpenFood } = props;
 
+    const bottomEl = useRef(null);
+
+    useEffect(() => {
+        const scrollToBottom = () => {
+            bottomEl.current.scrollIntoView({ behavior: 'smooth' });
+        };
+        if (bottomEl.current) {
+            scrollToBottom();
+        }
+    }, [orders]);
+
     const handleDeleteItem = (e, index) => {
         e.stopPropagation();
         const newOrders = [...orders];
@@ -103,25 +114,26 @@ const Order = props => {
                             )}
                         </OrderContainer>
                     ))}
-                    <OrderContainer>
-                        <OrderItem>
-                            <div></div>
-                            <div>Sub-Total</div>
-                            <div>{formatString(subTotal)}</div>
-                        </OrderItem>
-                        <OrderItem>
-                            <div></div>
-                            <div>Tax</div>
-                            <div>{formatString(subTotal * 0.07)}</div>
-                        </OrderItem>
-                        <OrderItem>
-                            <div></div>
-                            <div>Total</div>
-                            <div>{formatString(subTotal * 1.07)}</div>
-                        </OrderItem>
-                    </OrderContainer>
+                    <div ref={bottomEl} />
                 </OrderContent>
             )}
+            <OrderContainer style={{ borderTop: '1px solid grey' }}>
+                <OrderItem>
+                    <div></div>
+                    <div>Sub-Total</div>
+                    <div>{formatString(subTotal)}</div>
+                </OrderItem>
+                <OrderItem>
+                    <div></div>
+                    <div>Tax</div>
+                    <div>{formatString(subTotal * 0.07)}</div>
+                </OrderItem>
+                <OrderItem>
+                    <div></div>
+                    <div>Total</div>
+                    <div>{formatString(subTotal * 1.07)}</div>
+                </OrderItem>
+            </OrderContainer>
             <OrderFooter>
                 <ConfirmButton>Checkout</ConfirmButton>
             </OrderFooter>

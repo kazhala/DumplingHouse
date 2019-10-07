@@ -1,5 +1,26 @@
 export const foodItems = [
     {
+        name: 'Traditional Dumpling',
+        section: 'Dumpling',
+        price: 12.8,
+        img: '/img/tradDump.jpg',
+        choices: ['chicken', 'beef', 'vegan', 'egg']
+    },
+    {
+        name: 'Fried Dumpling',
+        section: 'Dumpling',
+        price: 13.8,
+        img: '/img/friedDump.jpg',
+        choices: ['chicken', 'beef', 'vegan', 'egg']
+    },
+    {
+        name: 'Steamed Dumpling',
+        section: 'Dumpling',
+        price: 12.8,
+        img: '/img/steamDump.jpg',
+        choices: ['chicken', 'beef', 'vegan', 'egg']
+    },
+    {
         name: 'Cheese Pizza',
         img: '/img/pizza2.jpg',
         section: 'Pizza',
