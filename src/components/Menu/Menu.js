@@ -1,13 +1,6 @@
 import React from 'react';
-import style from 'styled-components';
 import { foods, formatString } from '../../Data/FoodData';
-import { FoodGrid, Food, FoodLabel } from './FoodGrid';
-
-const MenuStyled = style.div`
-    margin: 0px 400px 50px 20px;
-    min-height: 1000px;
-    height: 100%:
-`;
+import { FoodGrid, Food, FoodLabel, MenuStyled } from './FoodGrid';
 
 const Menu = props => {
     return (

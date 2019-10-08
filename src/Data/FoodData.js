@@ -40,14 +40,14 @@ export const foodItems = [
         description: 'Each serve comes with 6 baozi'
     },
     {
-        name: 'XiaoLongBao',
+        name: 'Xiao Long Bao',
         section: 'BaoZi/Bun',
         price: 11.9,
         img: '/img/xiaolongBun.jpg',
         description: 'Each serve comes with 10 xiaolongbao'
     },
     {
-        name: 'Shengjian(Fried Bun)',
+        name: 'Shengjian (Fried Bun)',
         section: 'BaoZi/Bun',
         price: 12.9,
         img: '/img/friedBun.jpg',

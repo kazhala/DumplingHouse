@@ -21,6 +21,12 @@ export const OrderStyled = styled.div`
     z-index: 10;
     display: flex;
     flex-direction: column;
+    @media (max-width: 900px) {
+        width: 200px;
+    }
+    @media (max-width: 501px) {
+        display: none;
+    }
 `;
 
 export const OrderContent = styled(DialogContent)`
@@ -49,10 +55,16 @@ export const OrderItem = styled.div`
     display: grid;
     grid-template-columns: 20px 150px 20px 60px;
     justify-content: space-between;
+    @media (max-width: 900px) {
+        grid-template-columns: 0.5fr 2fr 1fr 0.5fr;
+    }
 `;
 
 export const DetailItem = styled.div`
     color: grey;
     font-size: 10px;
     padding-left: 37px;
+    @media (max-width: 900px) {
+        padding-left: 13px;
+    }
 `;

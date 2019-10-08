@@ -12,6 +12,11 @@ import { useAuth } from './Hooks/useAuth';
 import OrderDialog from './components/Order/OrderDialog';
 import { useOrderDialog } from './Hooks/useOrderDialog';
 
+// TODO: comments
+// TODO: responsive
+// TODO: fetch data from server
+// TODO: confirm orders
+
 function App() {
     const openFood = useOpenFood();
     const orders = useOrders();
