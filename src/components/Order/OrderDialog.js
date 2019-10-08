@@ -8,7 +8,7 @@ import {
 } from '../FoodDialog/styledDialog';
 
 const OrderDialog = props => {
-    const { openOrder, setOpenOrder, orders, setOrders } = props;
+    const { openOrder, setOpenOrder, setOrders } = props;
 
     const clearOrders = () => {
         setOrders([]);
