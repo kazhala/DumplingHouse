@@ -8,10 +8,14 @@ import Order from './components/Order/Order';
 import { useOpenFood } from './Hooks/useOpenFood';
 import { useOrders } from './Hooks/useOrders';
 import { useTitle } from './Hooks/useTitle';
+import { useAuth } from './Hooks/useAuth';
+
+const database = window.firebase.database();
 
 function App() {
     const openFood = useOpenFood();
     const orders = useOrders();
+    const auth = useAuth();
     useTitle({ ...openFood, ...orders });
 
     return (
@@ -23,8 +27,8 @@ function App() {
         >
             <GlobalStyle />
             <FoodDialog {...openFood} {...orders} />
-            <Navbar />
-            <Order {...orders} {...openFood} />
+            <Navbar {...auth} />
+            <Order {...orders} {...openFood} {...auth} />
             <Banner />
             <Menu {...openFood} />
             <div style={{ height: '20px' }} />

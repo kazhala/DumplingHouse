@@ -52,7 +52,7 @@ const DetailItem = styled.div`
 `;
 
 const Order = props => {
-    const { orders, setOrders, setOpenFood } = props;
+    const { orders, setOrders, setOpenFood, login, user } = props;
 
     const bottomEl = useRef(null);
 
@@ -104,6 +104,7 @@ const Order = props => {
                                 </div>
                                 <div>{formatString(order.orderPrice)}</div>
                             </OrderItem>
+
                             <DetailItem>
                                 {order.toppings
                                     .filter(topping => topping.checked)
@@ -118,6 +119,7 @@ const Order = props => {
                     <div ref={bottomEl} />
                 </OrderContent>
             )}
+
             <OrderContainer
                 style={{
                     borderTop: '1px solid grey',
@@ -142,7 +144,17 @@ const Order = props => {
                 </OrderItem>
             </OrderContainer>
             <OrderFooter>
-                <ConfirmButton>Checkout</ConfirmButton>
+                <ConfirmButton
+                    onClick={() => {
+                        if (user) {
+                            console.log('logged in');
+                        } else {
+                            login();
+                        }
+                    }}
+                >
+                    Checkout
+                </ConfirmButton>
             </OrderFooter>
         </OrderStyled>
     );

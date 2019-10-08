@@ -9,6 +9,9 @@ const NavbarStyled = styled.div`
     position: fixed;
     width: 100%;
     z-index: 999;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
 `;
 
 const Logo = styled(Title)`
@@ -17,7 +20,24 @@ const Logo = styled(Title)`
     text-shadow: 1px 1px 4px #380502;
 `;
 
+const UserStatus = styled.div`
+    color: white;
+    font-size: 12px;
+    margin-right: 30px;
+`;
+
+const ButtonContainer = styled.div`
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #8e8f7f;
+    &:hover {
+        opacity: 0.7;
+    }
+`;
+
 const Navbar = props => {
+    const { login, user, loading, logout } = props;
     return (
         <NavbarStyled>
             <Logo>
@@ -26,6 +46,22 @@ const Navbar = props => {
                     🏮{' '}
                 </span>
             </Logo>
+            <UserStatus>
+                {loading ? (
+                    'Loading...'
+                ) : (
+                    <ButtonContainer>
+                        <span role="img" aria-label="person">
+                            👤
+                        </span>{' '}
+                        {user ? (
+                            <span onClick={logout}>Log out</span>
+                        ) : (
+                            <span onClick={login}>Login / Sign up</span>
+                        )}
+                    </ButtonContainer>
+                )}
+            </UserStatus>
         </NavbarStyled>
     );
 };
