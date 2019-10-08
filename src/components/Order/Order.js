@@ -1,60 +1,19 @@
 import React, { useRef, useEffect } from 'react';
-import styled from 'styled-components';
-import { ConfirmButton, DialogContent } from '../FoodDialog/FoodDialog';
-import { DialogFooter as OrderFooter } from '../FoodDialog/FoodDialog';
+import {
+    OrderStyled,
+    OrderContent,
+    OrderContainer,
+    OrderItem,
+    DetailItem,
+    OrderButton
+} from './styledOrder';
+import { DialogFooter as OrderFooter } from '../FoodDialog/styledDialog';
 import { formatString } from '../../Data/FoodData';
 
 const database = window.firebase.database();
 
-const OrderStyled = styled.div`
-    position: fixed;
-    right: 0px;
-    top: 48px;
-    width: 340px;
-    background-color: #eee;
-    height: calc(100% - 48px);
-    box-shadow: 4px 0px 5px 4px grey;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-`;
-
-const OrderContent = styled(DialogContent)`
-    padding: 20px;
-    height: 100%;
-`;
-
-const OrderContainer = styled.div`
-    padding: 10px 0px;
-    border-bottom: 1px solid grey;
-    ${props =>
-        props.editable
-            ? `
-        &:hover {
-            cursor: pointer;
-            background-color: #e7e7e7;
-        }
-    `
-            : `
-        pointer-events: none;
-    `}
-`;
-
-const OrderItem = styled.div`
-    padding: 10px 0px;
-    display: grid;
-    grid-template-columns: 20px 150px 20px 60px;
-    justify-content: space-between;
-`;
-
-const DetailItem = styled.div`
-    color: grey;
-    font-size: 10px;
-    padding-left: 37px;
-`;
-
 const Order = props => {
-    const { orders, setOrders, setOpenFood, login, user } = props;
+    const { orders, setOrders, setOpenFood, login, user, setOpenOrder } = props;
 
     const bottomEl = useRef(null);
 
@@ -67,9 +26,12 @@ const Order = props => {
         }
     }, [orders]);
 
-    const sendOrder = (orders, { email, displayName }) => {
-        const newOrderRef = database.ref('orders').push();
-        console.log(orders);
+    const sendOrder = (orders, { email, displayName, uid }) => {
+        const newOrderRef = database
+            .ref(`orders`)
+            .child(uid)
+            .push();
+        // console.log(orders);
         const newOrders = orders.map(order => {
             return Object.keys(order).reduce((acc, orderKey) => {
                 if (!order[orderKey]) {
@@ -178,9 +140,11 @@ const Order = props => {
                 </OrderItem>
             </OrderContainer>
             <OrderFooter>
-                <ConfirmButton
+                <OrderButton
+                    disabled={orders.length < 1}
                     onClick={() => {
                         if (user) {
+                            setOpenOrder(true);
                             sendOrder(orders, user);
                         } else {
                             login();
@@ -188,7 +152,7 @@ const Order = props => {
                     }}
                 >
                     Checkout
-                </ConfirmButton>
+                </OrderButton>
             </OrderFooter>
         </OrderStyled>
     );

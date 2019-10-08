@@ -9,11 +9,14 @@ import { useOpenFood } from './Hooks/useOpenFood';
 import { useOrders } from './Hooks/useOrders';
 import { useTitle } from './Hooks/useTitle';
 import { useAuth } from './Hooks/useAuth';
+import OrderDialog from './components/Order/OrderDialog';
+import { useOrderDialog } from './Hooks/useOrderDialog';
 
 function App() {
     const openFood = useOpenFood();
     const orders = useOrders();
     const auth = useAuth();
+    const orderDialog = useOrderDialog();
     useTitle({ ...openFood, ...orders });
 
     return (
@@ -24,9 +27,10 @@ function App() {
             }}
         >
             <GlobalStyle />
+            <OrderDialog {...orderDialog} {...orders} />
             <FoodDialog {...openFood} {...orders} />
             <Navbar {...auth} />
-            <Order {...orders} {...openFood} {...auth} />
+            <Order {...orders} {...openFood} {...auth} {...orderDialog} />
             <Banner />
             <Menu {...openFood} />
             <div style={{ height: '20px' }} />
