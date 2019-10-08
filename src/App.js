@@ -10,8 +10,6 @@ import { useOrders } from './Hooks/useOrders';
 import { useTitle } from './Hooks/useTitle';
 import { useAuth } from './Hooks/useAuth';
 
-const database = window.firebase.database();
-
 function App() {
     const openFood = useOpenFood();
     const orders = useOrders();

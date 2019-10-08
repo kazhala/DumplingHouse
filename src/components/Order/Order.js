@@ -4,6 +4,8 @@ import { ConfirmButton, DialogContent } from '../FoodDialog/FoodDialog';
 import { DialogFooter as OrderFooter } from '../FoodDialog/FoodDialog';
 import { formatString } from '../../Data/FoodData';
 
+const database = window.firebase.database();
+
 const OrderStyled = styled.div`
     position: fixed;
     right: 0px;
@@ -64,6 +66,38 @@ const Order = props => {
             scrollToBottom();
         }
     }, [orders]);
+
+    const sendOrder = (orders, { email, displayName }) => {
+        const newOrderRef = database.ref('orders').push();
+        console.log(orders);
+        const newOrders = orders.map(order => {
+            return Object.keys(order).reduce((acc, orderKey) => {
+                if (!order[orderKey]) {
+                    return acc;
+                }
+                if (orderKey === 'choices' || orderKey === 'description') {
+                    return acc;
+                }
+                if (orderKey === 'toppings') {
+                    return {
+                        ...acc,
+                        [orderKey]: order[orderKey]
+                            .filter(top => top.checked)
+                            .map(({ name }) => name)
+                    };
+                }
+                return {
+                    ...acc,
+                    [orderKey]: order[orderKey]
+                };
+            }, {});
+        });
+        newOrderRef.set({
+            order: newOrders,
+            email,
+            displayName
+        });
+    };
 
     const handleDeleteItem = (e, index) => {
         e.stopPropagation();
@@ -147,7 +181,7 @@ const Order = props => {
                 <ConfirmButton
                     onClick={() => {
                         if (user) {
-                            console.log('logged in');
+                            sendOrder(orders, user);
                         } else {
                             login();
                         }
