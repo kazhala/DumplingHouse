@@ -14,7 +14,7 @@ import { formatString } from '../../Data/FoodData';
 const SideBarContainer = styled.div`
     display: flex;
     flex-direction: column;
-    height: 80%;
+    height: 95%;
     width: 50%;
     z-index: 13;
     margin-top: 50px;
@@ -95,16 +95,29 @@ const SideBar = props => {
                         {loading ? (
                             'Loading...'
                         ) : (
-                            <ButtonContainer onClick={handleAuthClick}>
-                                <span role="img" aria-label="person">
-                                    👤
-                                </span>{' '}
-                                {user ? (
-                                    <span>Logged in as {user.displayName}</span>
-                                ) : (
-                                    <span>Login</span>
-                                )}
-                            </ButtonContainer>
+                            <div
+                                style={{
+                                    display: 'grid',
+                                    gridTemplateColumns: '60px 1fr',
+                                    gridGap: '10px'
+                                }}
+                            >
+                                <ButtonContainer onClick={handleAuthClick}>
+                                    <span role="img" aria-label="person">
+                                        👤
+                                    </span>{' '}
+                                    {user ? (
+                                        <span>
+                                            Logged in as {user.displayName}
+                                        </span>
+                                    ) : (
+                                        <span>Login</span>
+                                    )}
+                                </ButtonContainer>
+                                <ButtonContainer>
+                                    Previous Orders
+                                </ButtonContainer>
+                            </div>
                         )}
                     </UserStatus>
                     <OrderContainer>Your Order: </OrderContainer>

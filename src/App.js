@@ -16,7 +16,6 @@ import { useSideBar } from './Hooks/useSideBar';
 
 // TODO: comments
 // TODO: fetch data from server
-// TODO: confirm orders
 
 function App() {
     const openFood = useOpenFood();
