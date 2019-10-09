@@ -4,6 +4,9 @@ import styled from 'styled-components';
 const ToppingGrid = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    @media (max-width: 501px) {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
 `;
 
 const ToppingCheckBox = styled.input`

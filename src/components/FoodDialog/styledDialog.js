@@ -13,6 +13,10 @@ export const Dialog = styled.div`
     left: calc(50% - 250px);
     display: flex;
     flex-direction: column;
+    @media (max-width: 501px) {
+        width: 80%;
+        left: calc(100% - 90%);
+    }
 `;
 
 export const DialogShadow = styled.div`

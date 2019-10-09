@@ -11,7 +11,7 @@ const Label = styled.label`
 
 const RadioContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
 `;
 
 const Choices = props => {
@@ -22,7 +22,7 @@ const Choices = props => {
             <h3>Choose one</h3>
             <RadioContainer>
                 {openFood.choices.map(choice => (
-                    <div key={choice}>
+                    <div key={choice} style={{ display: 'flex' }}>
                         <RadioInput
                             type="radio"
                             id={choice}
