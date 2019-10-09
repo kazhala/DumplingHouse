@@ -10,8 +10,6 @@ import {
 import { DialogFooter as OrderFooter } from '../FoodDialog/styledDialog';
 import { formatString } from '../../Data/FoodData';
 
-const database = window.firebase.database();
-
 const Order = props => {
     const { orders, setOrders, setOpenFood, login, user, setOpenOrder } = props;
 
@@ -25,41 +23,6 @@ const Order = props => {
             scrollToBottom();
         }
     }, [orders]);
-
-    const sendOrder = (orders, { email, displayName, uid }) => {
-        const newOrderRef = database
-            .ref(`orders`)
-            .child(uid)
-            .push();
-        // console.log(orders);
-        const newOrders = orders.map(order => {
-            return Object.keys(order).reduce((acc, orderKey) => {
-                if (!order[orderKey]) {
-                    return acc;
-                }
-                if (orderKey === 'choices' || orderKey === 'description') {
-                    return acc;
-                }
-                if (orderKey === 'toppings') {
-                    return {
-                        ...acc,
-                        [orderKey]: order[orderKey]
-                            .filter(top => top.checked)
-                            .map(({ name }) => name)
-                    };
-                }
-                return {
-                    ...acc,
-                    [orderKey]: order[orderKey]
-                };
-            }, {});
-        });
-        newOrderRef.set({
-            order: newOrders,
-            email,
-            displayName
-        });
-    };
 
     const handleDeleteItem = (e, index) => {
         e.stopPropagation();
@@ -145,7 +108,6 @@ const Order = props => {
                     onClick={() => {
                         if (user) {
                             setOpenOrder(true);
-                            sendOrder(orders, user);
                         } else {
                             login();
                         }

@@ -13,7 +13,6 @@ import OrderDialog from './components/Order/OrderDialog';
 import { useOrderDialog } from './Hooks/useOrderDialog';
 
 // TODO: comments
-// TODO: responsive
 // TODO: fetch data from server
 // TODO: confirm orders
 
@@ -32,7 +31,7 @@ function App() {
             }}
         >
             <GlobalStyle />
-            <OrderDialog {...orderDialog} {...orders} />
+            <OrderDialog {...orderDialog} {...orders} {...auth} />
             <FoodDialog {...openFood} {...orders} />
             <Navbar {...auth} />
             <Order {...orders} {...openFood} {...auth} {...orderDialog} />
