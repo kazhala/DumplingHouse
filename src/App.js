@@ -11,6 +11,8 @@ import { useTitle } from './Hooks/useTitle';
 import { useAuth } from './Hooks/useAuth';
 import OrderDialog from './components/Order/OrderDialog';
 import { useOrderDialog } from './Hooks/useOrderDialog';
+import SideBar from './components/SideBar/SideBar';
+import { useSideBar } from './Hooks/useSideBar';
 
 // TODO: comments
 // TODO: fetch data from server
@@ -21,6 +23,7 @@ function App() {
     const orders = useOrders();
     const auth = useAuth();
     const orderDialog = useOrderDialog();
+    const sideBar = useSideBar();
     useTitle({ ...openFood, ...orders });
 
     return (
@@ -33,7 +36,14 @@ function App() {
             <GlobalStyle />
             <OrderDialog {...orderDialog} {...orders} {...auth} />
             <FoodDialog {...openFood} {...orders} />
-            <Navbar {...auth} />
+            <Navbar {...auth} {...sideBar} />
+            <SideBar
+                {...sideBar}
+                {...orders}
+                {...openFood}
+                {...auth}
+                {...orderDialog}
+            />
             <Order {...orders} {...openFood} {...auth} {...orderDialog} />
             <Banner />
             <Menu {...openFood} />

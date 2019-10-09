@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { chineseYellow } from '../../Styles/colors';
 import { Title } from '../../Styles/title';
 
@@ -23,16 +23,20 @@ const Logo = styled(Title)`
     }
 `;
 
-const UserStatus = styled.div`
+export const UserStatus = styled.div`
     color: white;
     font-size: 12px;
     margin-right: 30px;
     @media (max-width: 501px) {
-        display: none;
+        ${props =>
+            props.navBar &&
+            css`
+                display: none;
+            `}
     }
 `;
 
-const ButtonContainer = styled.div`
+export const ButtonContainer = styled.div`
     cursor: pointer;
     border-radius: 5px;
     padding: 5px;
@@ -56,6 +60,15 @@ const HamburgerMenu = styled.div`
 
 const Navbar = props => {
     const { login, user, loading, logout } = props;
+
+    const handleAuthClick = () => {
+        if (user) {
+            logout();
+        } else {
+            login();
+        }
+    };
+
     return (
         <NavbarStyled>
             <Logo>
@@ -64,20 +77,18 @@ const Navbar = props => {
                     🏮{' '}
                 </span>
             </Logo>
-            <HamburgerMenu />
-            <UserStatus>
+            <HamburgerMenu
+                onClick={() => props.setShowSideBar(prev => !prev)}
+            />
+            <UserStatus navBar>
                 {loading ? (
                     'Loading...'
                 ) : (
-                    <ButtonContainer>
+                    <ButtonContainer onClick={handleAuthClick}>
                         <span role="img" aria-label="person">
                             👤
                         </span>{' '}
-                        {user ? (
-                            <span onClick={logout}>Log out</span>
-                        ) : (
-                            <span onClick={login}>Login / Sign up</span>
-                        )}
+                        {user ? <span>Log out</span> : <span>Login</span>}
                     </ButtonContainer>
                 )}
             </UserStatus>

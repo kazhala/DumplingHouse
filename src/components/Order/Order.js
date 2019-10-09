@@ -45,7 +45,7 @@ const Order = props => {
                 <OrderContent>
                     <OrderContainer>Your Order:</OrderContainer>{' '}
                     {orders.map((order, index) => (
-                        <OrderContainer key={order.name} editable>
+                        <OrderContainer key={index} editable>
                             <OrderItem
                                 onClick={() => setOpenFood({ ...order, index })}
                             >

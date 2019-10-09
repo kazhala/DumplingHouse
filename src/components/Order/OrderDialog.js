@@ -6,6 +6,7 @@ import {
     DialogFooter,
     ConfirmButton
 } from '../FoodDialog/styledDialog';
+import { Title } from '../../Styles/title';
 import { formatString } from '../../Data/FoodData';
 
 const database = window.firebase.database();
@@ -57,25 +58,34 @@ const OrderDialog = props => {
         return total + order.orderPrice;
     }, 0);
 
+    const shadowClicked = () => {
+        if (confirmed) {
+            setConfirmed(false);
+            setOpenOrder(false);
+            clearOrders();
+        } else {
+            setOpenOrder(false);
+            setConfirmed(false);
+        }
+    };
+
     return openOrder ? (
         <React.Fragment>
-            <DialogShadow
-                onClick={() => {
-                    clearOrders();
-                    setOpenOrder(false);
-                    setConfirmed(false);
-                }}
-            />
+            <DialogShadow onClick={shadowClicked} />
             <Dialog>
                 <DialogContent>
                     {confirmed ? (
                         <>
-                            <h2>
+                            <Title
+                                style={{
+                                    marginTop: '20px'
+                                }}
+                            >
                                 <span role="img" aria-label="truck">
                                     🚚
                                 </span>
                                 Your order is on the way!!
-                            </h2>
+                            </Title>
                             <p>
                                 {' '}
                                 You have been emailed confirmation of your
@@ -85,11 +95,14 @@ const OrderDialog = props => {
                         </>
                     ) : (
                         <>
-                            <h2>
-                                Below is your order total, once you click
-                                confirm, we'll start cooking in a few minutes,
-                                looking forward to see you in shop
-                            </h2>
+                            <Title
+                                style={{
+                                    marginTop: '20px'
+                                }}
+                            >
+                                Below is order's total amount, Click confirm to
+                                order
+                            </Title>
                             <p>Total: {formatString(subTotal * 1.07)}</p>
                         </>
                     )}
